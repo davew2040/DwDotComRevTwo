@@ -1,0 +1,108 @@
+@import '../../../assets/scss/mixins.scss';
+@import '../../../assets/scss/variables.scss';
+
+.body-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+h2 {
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+}
+
+.summary-title-highlight {
+  font-weight: 700;
+}
+
+.dave-info {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.history-entry {
+  margin-top: 3em;
+}
+
+.skill-set ul {
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+  margin: 0; /* To remove default bottom margin */
+  padding: 0; /* To remove default left padding */
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.skill-set li {
+  display: block;
+  width: 50%;
+  font-size: 0.8em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  padding-left: 0.6em;
+}
+
+.skill-set ul li:nth-child(4n),
+.skill-set ul li:nth-child(4n+1) {
+  background: #d0d3e0;
+}
+
+.skill-set ul li:nth-child(4n+2),
+.skill-set ul li:nth-child(4n+3) {
+  background: #e8d1d1;
+}
+
+.company-name {
+  font-weight: 500;
+  margin-right: 1em;
+}
+
+@include sm {
+  .details-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@include xs {
+  .details-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.position-description ul {
+  list-style-type: none;
+}
+
+.position-description li {
+  margin-top: 1em;
+  font-size: 0.9em;
+}
+
+.position-title {
+  font-style: italic;
+}
+
+.education {
+  margin-bottom: 4em;
+}
+
+.degree {
+  font-weight: 600;
+  text-align: center;
+}
+
+.school {
+  text-align: center;
+  margin-bottom: 1em;
+}

@@ -1,0 +1,28 @@
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+
+body {
+  color: $color-default-text;
+}
+
+a, a:visited, a:hover, a:link {
+  color: $color-default-text;
+}
+
+.title {
+  margin-bottom: 1em;
+  font-family: 'Oleo Script', cursive;
+  width: 100%;
+  background: linear-gradient(#ab7878, #d6aaaa);
+  color: white;
+  padding-top: 0.5em;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  @include xs {
+    font-size: 0.7em;
+  }
+}

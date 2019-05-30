@@ -1,0 +1,78 @@
+@import '../assets/scss/variables.scss';
+@import '../assets/scss/mixins.scss';
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $footer-height;            /* Footer height */
+}
+
+.container {
+  padding-top: 2em;
+  padding-bottom: 4em;
+  background-color: $color-body-background;
+  z-index: 5;
+  position: relative;
+
+  @include xs {
+    width: 100%;
+  }
+
+  @include sm {
+    width: $body-width-medium;
+    margin-top: $header-border-width-medium;
+    margin-bottom: $header-border-width-medium;
+    padding-top: 2*$header-border-width-medium;
+    background-color: $color-body-background;
+    min-height: calc(100vh - #{$header-height-medium} - #{$footer-height} - #{2*$header-border-width-medium});
+    box-shadow:
+      -$header-border-width-medium 0px white,
+      $header-border-width-medium 0px white;
+  }
+
+  @include lg {
+    width: $body-width-large;
+    margin-top: $header-border-width-large;
+    margin-bottom: $header-border-width-large;
+    padding-top: 2*$header-border-width-large;
+    background-color: $color-body-background;
+    min-height: calc(100vh - #{$header-height-large} - #{$footer-height} - #{2*$header-border-width-large});
+    box-shadow:
+      -$header-border-width-large 0px white,
+      $header-border-width-large 0px white;
+  }
+}
+
+.border-edge {
+  position: absolute;
+  bottom: 0;
+
+  @include sm {
+    top: $header-height-medium + 2*$header-border-width-medium;
+    width: $body-width-medium;
+    left: calc(50% - #{($body-width-medium / 2)});
+    box-shadow:
+      -(2*$header-border-width-medium) 0px $color-header-background,
+      (2*$header-border-width-medium) 0px $color-header-background;
+  }
+
+  @include lg {
+    top: $header-height-large + 2*$header-border-width-large;
+    width: $body-width-large;
+    left: calc(50% - #{($body-width-large / 2)});
+    box-shadow:
+      -(2*$header-border-width-large) 0px $color-header-background,
+      (2*$header-border-width-large) 0px $color-header-background;
+  }
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  background-color: rgb(246, 252, 255);
+}
+
+#content-wrap {
+  padding-bottom: $footer-height;
+}
