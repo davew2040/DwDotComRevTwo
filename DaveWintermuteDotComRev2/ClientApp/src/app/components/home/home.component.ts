@@ -11,19 +11,5 @@ export class HomeComponent  implements OnInit {
   }
 
   ngOnInit(): void {
-    // const result = this.el.nativeElement.querySelector(".warp-text") as HTMLDivElement;
-    // const innerText = result.innerText;
-    // result.innerHTML = '';
-    // for (let i = 0; i < innerText.length; i++) {
-    //   const newStyle = document.createElement('style');
-    //   newStyle.innerHTML = `.spreader-item${i} { color: red; display: inline-block; transform: translate(0, -${i*10}px) scale(${1.0-(i/20.0)}); }`;
-    //   document.body.appendChild(newStyle);
-
-    //   const element = document.createElement('span');
-    //   element.classList.add(`spreader-item${i}`);
-    //   element.innerHTML = innerText[i];
-
-    //   result.appendChild(element);
-    // }
   }
 }

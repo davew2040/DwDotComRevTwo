@@ -1,8 +1,115 @@
 
 <div class="title">
-    <h1>Home</h1>
+    <h1>Updates</h1>
 </div>
 
-<div class="body-text" style="margin-top: 4em">
-    Welcome to Dave Wintermute's home on the Web!
+<div class="update">
+    <div class="update-header">
+      <div class="update-title">Don't use .Result without await!</div>
+      <div class="update-date">June 11th, 2019</div>
+    </div>
+    <div class="update-content">
+      <div class="update-line">There's some pretty justifiable confusion out there regarding the nature of <strong>async/await</strong> in C#. It's important to understand that the async/await keywords are *not* inherently multi-threaded; in fact it's entirely single-threaded!
+        What <strong>await</strong> really does is yield your currently-executing thread back to whatever might be next in the processing queue (in a similar way to what node.js refers to as the "event loop"). Eventually, once the long-running process that you're awaiting is done with its work, it basically says "hey, I'm ready when you are!", and the executable will return control *back* to location of the await call at the earliest available opportunity, i.e. whenever that thread is no longer busy doing anything, or immediately if the thread was already free. This all happens on the same thread!
+      </div>
+      <div class="update-line">This is extremely valuable, because it prevents that thread from getting backed up by long-running tasks like database or web requests. The CPU (or more specifically, the core that's running that particular thread) can happily go on executing whatever other code might be waiting for some CPU time. In other words, that thread/core won't be "blocked" by that waiting operation.</div>
+      <div class="update-line">That said, async/await provide a great way to synchronize work across multiple threads in an intuitive and convenient way. For example, you can throw a bunch of tasks into the thread pool with <strong>Task.Run</strong> which *will* be multi-threaded, and then you use <strong>await Task.WhenAll</strong> to instruct your current method to yield back to the system, and only continue with its execution once all of those work item threads are complete!</div>
+      <div class="update-line">But what you *really* want to avoid doing is using the <strong>.Result</strong> property to wait on the completed result of an async method call, because <strong>THIS WILL BLOCK YOUR CURRENT THREAD</strong>! While <strong>await</strong> relinquishes control (and CPU time) back to the main program, <strong>.Result</strong> just doesn't do that! That CPU core is effectively stuck until the method call is done processing, unable to do any other work (at least as far as your program is concerned).</div>
+      <div class="update-line">This is best demonstrated with an example. This little snippet just queues up a bunch of work items (number defined by <strong>numberOfItems</strong>) and based on the value in the flag <strong>useBlocking</strong>, will use either a blocking or non-blocking approach, i.e. waiting on an async task with <strong>.Result</strong> versus waiting on on an async task with <strong>await</strong>. The "work" itself is trivial; it's just an artificial three second delay.</div>
+      <div class="update-line">
+        Example code, to be copy/pasted into your favorite C# editor:
+        <div class="code-block">
+          <pre><code>
+            {{"
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace AsyncPerformanceTest
+{
+    class Program
+    {
+        private const int numberOfItems = 200;
+        private const bool useBlocking = true;
+
+        private static List&lt;string&gt; workItemsList = new List&lt;string&gt;();
+
+        static async Task Main(string[] args)
+        {
+            Console.WriteLine(\"Starting...\");
+
+            for (int i=0; i &lt; numberOfItems; i++)
+            {
+                workItemsList.Add(i.ToString());
+            }
+
+            IEnumerable&lt;Task&lt;string&gt;&gt; taskList = workItemsList.Select(x => Task.Run(async () =>
+            {
+                if (useBlocking)
+                {
+                    return await BlockingDoWork(x);
+                }
+                else
+                {
+                    return await AsyncDoWork(x);
+                }
+            }));
+
+            DateTime start = DateTime.Now;
+
+            await Task.WhenAll(taskList.ToArray());
+
+            DateTime end = DateTime.Now;
+
+            var totalMilliseconds = (end - start).TotalMilliseconds;
+
+            Console.WriteLine($\"Completed {numberOfItems} requests in {totalMilliseconds / 1000.0} seconds\");
+            Console.WriteLine($\"{numberOfItems / totalMilliseconds * 1000} operations per second.\");
+        }
+
+
+        static async Task&lt;string&gt; AsyncDoWork(string item)
+        {
+            var result = await InnerDoWork(item);
+
+            return item;
+        }
+
+        static async Task&lt;string&gt; BlockingDoWork(string item)
+        {
+            var result = InnerDoWork(item).Result;
+
+            return item;
+        }
+
+        static async Task&lt;string&gt; InnerDoWork(string item)
+        {
+            await Task.Delay(3000);
+
+            return item + \"x\";
+        }
+    }
+}"}}
+          </code></pre>
+        </div>
+      </div>
+      <div class="update-line">This isn't the most sophisticated code, and it takes a bit of tweaking, but it should be fairly clear how it works. When I run this code on my i5-6600K system with four cores, using parameters <strong>useBlocking = true, numberOfItems = 100</strong>, it completes in about 36 seconds, or 2.77 operations/second. That's not great!</div>
+      <div class="update-line">On the other hand, if I run it with <strong>useBlocking = false</strong>, I find that the value that takes about the same amount of time to run is <strong>numberOfItems = 230,000</strong>, which is 6,330 operations/second. Just to be clear, this is <strong>2,285 times</strong> faster than the blocking approach.</div>
+      <div class="update-line">You <strong>really</strong> don't want to use <strong>.Result</strong> to wait on async methods!</div>
+      <div class="update-line">That said, if you've queued up a bunch of tasks and then used something like <strong>Task.WhenAll</strong> to await their completion, it's totally fine to access the <strong>Result</strong> property to access the final result of those operations <strong>after</strong> the await has completed, because the evaluation has already occurred; you just don't want to use it to force the current thread to wait on the asynchronous operation to complete.</div>
+      <div class="update-line">Hope this helps!</div>
+    </div>
+</div>
+
+
+<div class="update">
+    <div class="update-header">
+      <div class="update-title">New site, who dis?</div>
+      <div class="update-date">June 9th, 2019</div>
+    </div>
+    <div class="update-content">
+      <div class="update-line">Finally updated my site away from the MVC app that was DaveWintermute.com for the last five years! The new site is based on Angular 6, continuing to run on Azure but now in an ASP.Net Core container!</div>
+      <div class="update-line">I'll tell you what, life is good in this brave new world (okay, arguably not that new) of SPA frameworks; it really feels not so different from writing native desktop applications. I still need to spend some time dipping my toe into React, but Angular is some quality stuff.</div>
+    </div>
 </div>

@@ -74,9 +74,9 @@
   z-index: 3;
 
   @include xs {
-    width: 100%;
     height: $header-height-small;
     z-index: 3;
+    width: 100%;
   }
 
   @include sm {
@@ -114,25 +114,34 @@
   @include  dave-wintermute-text(1.0);
 };
 
+.img-header {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: top / contain no-repeat url("../../../assets/images/header-text.svg");
+  flex: 1 1 auto;
+
+  @include xs {
+    width: 90%;
+    flex: 0 0 135px;
+  };
+
+  @include sm {
+    width: 100%;
+    flex: 1 1 auto;
+  };
+}
+
 .btn-container {
-  margin-top: auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex: 0 0 45px;
 }
 
 .btn-container .btn {
-  border-radius: 100px;
-  margin-top: 25px;
-  background-color: $color-btn-primary;
-  border-color: $color-btn-primary;
-  width: 7em;
   margin-left: 0.5em;
   margin-right: 0.5em;
-}
-
-.btn-container .btn:hover {
-  background-color: #5fa9ea;
-  border-color: #5fa9ea;
 }

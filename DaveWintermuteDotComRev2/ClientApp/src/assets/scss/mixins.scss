@@ -1,6 +1,11 @@
 
 @import "./variables.scss";
 
+@mixin print {
+  @media print {
+    @content;
+  }
+}
 
 @mixin xs {
   @media (max-width: #{$screen-sm-min}) {

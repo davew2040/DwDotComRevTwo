@@ -16,7 +16,9 @@
   position: relative;
 
   @include xs {
+    padding-top: 2em;
     width: 100%;
+    min-height: calc(100vh - #{$header-height-small} - #{$footer-height});
   }
 
   @include sm {
@@ -70,9 +72,23 @@
 body {
   position: relative;
   min-height: 100vh;
-  background-color: rgb(246, 252, 255);
+
+  @media screen {
+    background-color: rgb(246, 252, 255);
+  }
+
+  @media print {
+    background-color: white;
+  }
 }
 
 #content-wrap {
   padding-bottom: $footer-height;
+}
+
+.print-container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

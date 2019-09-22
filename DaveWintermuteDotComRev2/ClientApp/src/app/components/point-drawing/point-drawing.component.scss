@@ -1,0 +1,22 @@
+#pointHolder {
+    width: 500px;
+    height: 500px;
+    background-color: #EEEEEE;
+    border: 1px solid rgb(189, 189, 189);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.point {
+    position: absolute;
+    border-radius: 999px;
+    transition: width 1s, height 1s, top 1s, left 1s;
+    pointer-events: none;
+}
+
+.point-drawing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

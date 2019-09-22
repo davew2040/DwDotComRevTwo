@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { RoutePaths } from 'src/app/angular/route-paths';
 
 @Component({
   selector: 'app-resume',
@@ -6,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./resume.component.scss'],
 })
 export class ResumeComponent implements OnInit {
-  constructor() {
+  constructor(private router: Router) {
 
   }
 
   ngOnInit(): void {
 
+  }
+
+  public navigateToPrintResume() {
+    this.router.navigate([{outlets: {'printLayoutOutlet': ['printlayout']}}]);
   }
 }

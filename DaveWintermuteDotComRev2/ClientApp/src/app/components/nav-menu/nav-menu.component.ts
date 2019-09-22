@@ -13,15 +13,15 @@ export class NavMenuComponent {
   {
   }
 
-  public navigateToHome() {
-    this.router.navigate(['/' + RoutePaths.Home]);
+  public navigateToUpdates() {
+    this.router.navigateByUrl('/' + RoutePaths.Update);
   }
 
   public navigateToLinks() {
-    this.router.navigate(['/' + RoutePaths.Links]);
+    this.router.navigateByUrl('/' + RoutePaths.Links);
   }
 
   public navigateToResume() {
-    this.router.navigate(['/' + RoutePaths.Resume]);
+    this.router.navigateByUrl('/' + RoutePaths.Resume);
   }
 }

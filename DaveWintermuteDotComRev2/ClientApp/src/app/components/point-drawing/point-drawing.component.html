@@ -1,0 +1,15 @@
+
+  <div class="point-drawing-container">
+    <h1>Point Drawing</h1>
+
+    <div id="pointHolder" (click)="handleClick($event)" (touchstart)="handleTouch($event)" >
+      <div *ngFor="let point of this.points; trackBy: trackByFn" class="point"
+           [style.top]="'' + (point.y-point.width/2.0) + 'px'"
+           [style.left]="'' + (point.x-point.width/2.0) + 'px'"
+           [style.background]="point.color"
+           [style.width]="'' + point.width + 'px'"
+           [style.height]="'' + point.width + 'px'"
+           [style.opacity]="point.opacity">
+      </div>
+    </div>
+  </div>

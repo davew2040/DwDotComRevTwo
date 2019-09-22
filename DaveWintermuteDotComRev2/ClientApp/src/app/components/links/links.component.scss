@@ -5,3 +5,38 @@
   font-size: 1.3em;
   text-align: center;
 }
+
+.links-group-header {
+  color: rgb(138, 80, 80);
+  font-size: 1.5em;
+  margin-top: 1.5em;
+  font-weight: 400;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.link-entry {
+  padding-left: 22px ;
+  text-indent: -22px ;
+}
+
+.link-entry a {
+  font-weight: 700;
+  color: rgb(60, 81, 139);
+}
+
+.link-entry:not(:first-child) {
+  margin-top: 1em;
+}
+
+.umich {
+  font-weight: 700;
+}
+
+.umich-go {
+  color: #dada2c;
+}
+
+.umich-blue {
+  margin-left: 0.3em;
+  color: rgb(18, 18, 155);
+}

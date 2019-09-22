@@ -1,3 +1,4 @@
+using DaveWintermuteDotComRev2.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -22,11 +23,15 @@ namespace DaveWintermuteDotComRev2
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddSignalR();
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddSingleton<PointAccumulator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +51,11 @@ namespace DaveWintermuteDotComRev2
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<PointHub>("/pointHub");
+            });
 
             app.UseMvc(routes =>
             {

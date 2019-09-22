@@ -11,6 +11,7 @@ import { FooterComponentComponent } from './components/footer-component/footer-c
 import { ROUTES } from './app.routes';
 import { ResumeComponent } from './components/resume/resume.component';
 import { LinksComponent } from './components/links/links.component';
+import { PointDrawingComponent } from './components/point-drawing/point-drawing.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { LinksComponent } from './components/links/links.component';
     HomeComponent,
     LinksComponent,
     ResumeComponent,
+    PointDrawingComponent,
     FooterComponentComponent
   ],
   imports: [

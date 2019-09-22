@@ -1,6 +1,10 @@
 @import "assets/scss/variables.scss";
 @import "assets/scss/mixins.scss";
 
+@media print {
+  @page { margin: 0; }
+}
+
 body {
   color: $color-default-text;
 }
@@ -21,8 +25,38 @@ a, a:visited, a:hover, a:link {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   @include xs {
     font-size: 0.7em;
   }
+}
+
+button.btn {
+  border-radius: 100px;
+  width: 7em;
+
+  @include xs {
+    font-size: 0.8em;
+  }
+}
+
+button.btn-primary {
+  background-color: $color-btn-primary;
+  border-color: $color-btn-primary;
+}
+
+button.btn-primary:hover {
+  background-color: $color-btn-primary-hover;
+  border-color: $color-btn-primary-hover;
+}
+
+
+button.btn-secondary {
+  background-color: $color-btn-secondary;
+  border-color: $color-btn-secondary;
+}
+
+button.btn-secondary:hover {
+  background-color: $color-btn-secondary-hover;
+  border-color: $color-btn-secondary-hover;
 }
