@@ -2,7 +2,21 @@
 @import "assets/scss/mixins.scss";
 
 @media print {
-  @page { margin: 0; }
+  @page {
+    size: A4 portrait;
+  }
+
+  body {
+    font-size: 12pt;
+    margin-top: 2cm;
+    margin-bottom: 2cm;
+    color: black;
+  }
+
+  html {
+    width: 8.5in !important;
+    height: 11in !important;
+  }
 }
 
 body {

@@ -3,13 +3,20 @@
     <h1>Point Drawing</h1>
 
     <div id="pointHolder" (click)="handleClick($event)" (touchstart)="handleTouch($event)" >
-      <div *ngFor="let point of this.points; trackBy: trackByFn" class="point"
-           [style.top]="'' + (point.y-point.width/2.0) + 'px'"
-           [style.left]="'' + (point.x-point.width/2.0) + 'px'"
-           [style.background]="point.color"
-           [style.width]="'' + point.width + 'px'"
-           [style.height]="'' + point.width + 'px'"
-           [style.opacity]="point.opacity">
+      <div *ngFor="let point of this.points; trackBy: trackByFn"
+            class="single-point-holder"
+            [@itemAnim]
+            [style.top]="'' + (point.y-this.PointBoxSize) + 'px'"
+            [style.left]="'' + (point.x-this.PointBoxSize) + 'px'">
+        <div
+          class="inner-point"
+            [style.background]="point.color"
+            [style.opacity]="point.opacity"
+            [style.top]="this.percentageToAbosluteMargin(point.percentage)"
+            [style.left]="this.percentageToAbosluteMargin(point.percentage)"
+            [style.bottom]="this.percentageToAbosluteMargin(point.percentage)"
+            [style.right]="this.percentageToAbosluteMargin(point.percentage)">
+        </div>
       </div>
     </div>
   </div>

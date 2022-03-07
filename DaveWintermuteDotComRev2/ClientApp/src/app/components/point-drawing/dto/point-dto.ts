@@ -3,6 +3,6 @@ export interface PointDto {
     y: number;
     id: number;
     color: string;
-    width: number;
+    percentage: number;
     opacity: number;
 }

@@ -6,7 +6,7 @@ import { LinksComponent } from './components/links/links.component';
 import { PointDrawingComponent } from './components/point-drawing/point-drawing.component';
 
 export const ROUTES: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: ResumeComponent },
   { path: RoutePaths.Update, component: HomeComponent },
   { path: RoutePaths.Resume, component: ResumeComponent },
   { path: RoutePaths.Links, component: LinksComponent },

@@ -2,6 +2,6 @@ export interface PointOutputDto {
     x: number;
     y: number;
     color: string;
-    width: number;
+    percentage: number;
     opacity: number;
 }

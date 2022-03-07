@@ -1,3 +1,5 @@
+$box-width: 150px;
+
 #pointHolder {
     width: 500px;
     height: 500px;
@@ -8,11 +10,21 @@
     overflow: hidden;
 }
 
-.point {
-    position: absolute;
-    border-radius: 999px;
-    transition: width 1s, height 1s, top 1s, left 1s;
-    pointer-events: none;
+.single-point-holder {
+  position: absolute;
+  width: $box-width;
+  height: $box-width;
+  pointer-events: none;
+  transform: translateX($box-width/2.0) translateY($box-width/2.0)
+}
+
+.inner-point {
+  position: absolute;
+  border-radius: 999px;
+  left: 10%;
+  top: 10%;
+  right: 10%;
+  bottom: 10%;
 }
 
 .point-drawing-container {

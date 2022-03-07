@@ -8,13 +8,13 @@
 }
 
 @mixin xs {
-  @media (max-width: #{$screen-sm-min}) {
+  @media not print and (max-width: #{$screen-sm-min}) {
       @content;
   }
 }
 
 @mixin sm {
-  @media (min-width: #{$screen-sm-min}) {
+  @media not print and (min-width: #{$screen-sm-min}) {
       @content;
   }
 }
