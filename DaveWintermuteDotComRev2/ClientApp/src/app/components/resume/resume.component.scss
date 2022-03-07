@@ -1,8 +1,8 @@
 @import '../../../assets/scss/mixins.scss';
 @import '../../../assets/scss/variables.scss';
 
-$margin-left-right: 0cm;
-$margin-top-bottom: 3cm;
+$margin-left-right: 2.5cm;
+$margin-top-bottom: 2cm;
 
 @include print {
   .resume {
@@ -14,6 +14,16 @@ $margin-top-bottom: 3cm;
     a, a:link, a:visited {
       color: black;
     }
+  }
+
+  .citrix .position-description,
+  .ibm .position-description {
+    display: none;
+  }
+
+  .assistrx, .tybrin {
+    page-break-before: always;
+    margin-top: $margin-top-bottom;
   }
 }
 
@@ -71,6 +81,12 @@ $margin-top-bottom: 3cm;
   }
 }
 
+.developer-summary {
+  @media print {
+    margin-left: 0.5cm;
+  }
+}
+
 .body-text {
   display: flex;
   flex-direction: row;
@@ -81,7 +97,7 @@ $margin-top-bottom: 3cm;
 
 h2 {
   margin-top: 1.5em;
-  margin-bottom: 1em;
+  margin-bottom: 0.35cm;
 }
 
 .summary-title-highlight {
@@ -196,11 +212,6 @@ hr.resume-header-divider {
 .company-name {
   font-weight: 500;
   margin-right: 1em;
-}
-
-.assistrx, .mindtree, .tybrin {
-  page-break-before: always;
-  margin-top: $margin-top-bottom;
 }
 
 .details-row {
